@@ -6,22 +6,27 @@ import datetime
 
 IPtocheck = ""
 smtpserver = ""
+fromemail = ""
+toemail = ""
+subject = ""
+body = ""
+logfile = ""
 
-def logToFile(string):
-	f=open('wdoglogfile.txt','a')
+def logToFile(string,logfile):
+	f=open(logfile,'a')
 	f.write(str(datetime.datetime.now())+string+"\n")
 	f.close()
 
 
 while True:
-	if (os.system("ping6 -c 1 -r 2a02:688:1::5 > /dev/null") !=0):
-		if (os.system("ping6 -c 1 -r 2a02:688:1::5 > /dev/null") !=0):
-			if (os.system("ping6 -c 1 2a02:688:1::5 -r /dev/null") !=0):
-			        server = smtplib.SMTP('10.0.1.1')
+	if (os.system("ping6 -c 1 -r "+IPtocheck+" > /dev/null") !=0):
+		if (os.system("ping6 -c 1 -r "+IPtocheck+" > /dev/null") !=0):
+			if (os.system("ping6 -c 1 -r "+IPtocheck+" > /dev/null") !=0):
+			        server = smtplib.SMTP(smtpserver)
 	        		server.set_debuglevel(0)
-				msg = "From:bgp2@ninux.org\r\nTo:zioproto@gmail.com\r\nSubject:BGP Tecnopolo Problem"
-	        		logToFile("problem")
-				server.sendmail("bgp2@ninux.org", "zioproto@gmail.com", msg)
+				msg = "From:"+fromemail+"\r\nTo:"+toemail+"\r\nSubject:"+subject
+	        		logToFile(body,logfile)
+				server.sendmail(fromemail, toemail, msg)
 	        		server.quit()
 				time.sleep(30)
 	else:
