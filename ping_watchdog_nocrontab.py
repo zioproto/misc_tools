@@ -14,9 +14,9 @@ def logToFile(string):
 
 
 while True:
-	if (os.system("ping6 -c 1 2a02:688:1::5 > /dev/null") !=0):
-		if (os.system("ping6 -c 1 2a02:688:1::5 > /dev/null") !=0):
-			if (os.system("ping6 -c 1 2a02:688:1::5 /dev/null") !=0):
+	if (os.system("ping6 -c 1 -r 2a02:688:1::5 > /dev/null") !=0):
+		if (os.system("ping6 -c 1 -r 2a02:688:1::5 > /dev/null") !=0):
+			if (os.system("ping6 -c 1 2a02:688:1::5 -r /dev/null") !=0):
 			        server = smtplib.SMTP('10.0.1.1')
 	        		server.set_debuglevel(0)
 				msg = "From:bgp2@ninux.org\r\nTo:zioproto@gmail.com\r\nSubject:BGP Tecnopolo Problem"
